@@ -1,0 +1,49 @@
+name: download-sigbm
+
+on:
+  schedule:
+    - cron:  "0 22,10 * * *"
+  workflow_dispatch:
+    branches: [main]
+
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - name: Copiar os arquivos do repositorio
+        uses: actions/checkout@v4
+
+      - name: Instalar o Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Instalar Poetry
+        run: pip install poetry
+
+      - name: Instalar dependências do projeto
+        run: poetry install
+
+      - name: Rodar o pacote
+        run: poetry run python setup.py
+
+      - name: Configure o Git
+        run: |
+          git config user.email "mayara.daher@gmail.com"
+          git config user.name "mayaradaher"
+
+      - name: Adicionar arquivo gerado ao Git
+        run: |
+          DATE=$(date +'%Y-%m-%d')
+          git add data-raw/download_sigbm_${DATE}.xlsx
+
+      - name: Fazer commit das alterações
+        run: |
+          git commit -m "Adicionando arquivo Excel gerado"
+
+      - name: Push para o repositório
+        run: |
+          git push

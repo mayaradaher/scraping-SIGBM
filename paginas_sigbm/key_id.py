@@ -39,7 +39,7 @@ values = res_post.json()['Entities']
 df = pd.json_normalize(values)
 
 # Filtrar por estado
-state_filter = 'TO'
+state_filter = 'MG'
 df_state = df[df['UF'] == state_filter]
 
 # Separar os nomes das barragens ("NomeBarragem")

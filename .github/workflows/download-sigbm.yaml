@@ -38,7 +38,7 @@ jobs:
       - name: Adicionar arquivo gerado ao Git
         run: |
           DATE=$(date +'%Y-%m-%d')
-          git add data-raw/download_sigbm_${DATE}.xlsx
+          git add data/download_sigbm_${DATE}.xlsx
 
       - name: Fazer commit das alterações
         run: |

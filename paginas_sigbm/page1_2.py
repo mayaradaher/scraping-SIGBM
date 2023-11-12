@@ -36,17 +36,21 @@ def scrap_id_info(id: str) -> dict:
         'ElaboracaoProjeto',
         'DataEstimadaEmissaoProjeto',
         'DataDeEmissaoProjetoBasico',
+        'DataEstimadaEmissaoProjeto',
         'DataDeEmissaoProjetoExecutivo',
-        'DataInicioMonitoramentoAtivo',
-        'DuracaoMonitoramentoAtivoEmMeses',
-        'DataInicioMonitoramentoPassivo',
-        'DataConclusaoMonitoramentoPassivo',
         'SolucaoDescaracterizacao',
+        'EstruturaRemanescente',
         'EstabilizacaoOuDescaracterizacao',
         'DataInicioEstabilizacaoOuDescaracterizacao',
         'DuracaoEstimadaEmMeses',
         'DataConlusaoEstabilizacaoOuDescaracterizacao',
+        'MonitoramentoAtivo',
+        'DataInicioMonitoramentoAtivo',
+        'DuracaoMonitoramentoAtivoEmMeses',
+        'DataInicioMonitoramentoPassivo',
+        'DataConclusaoMonitoramentoPassivo',
     ]
+
     for col in missing_columns:
         if col not in dict:
             dict[col] = ''
@@ -118,6 +122,10 @@ df_page1_2['EstabilizacaoOuDescaracterizacao'] = df_page1_2[
     'EstabilizacaoOuDescaracterizacao'
 ].replace(['true'], ['Fase de obras de estabilização ou descaracterização'])
 
+df_page1_2['MonitoramentoAtivo'] = df_page1_2['MonitoramentoAtivo'].replace(
+    ['true'], ['Em monitoramento ativo']
+)
+
 # Juntar os ids ao dataframe
 df_page1_2 = pd.merge(df_page1_2, key_id.df_state_id, how='inner', on='ID')
 
@@ -136,15 +144,18 @@ df_page1_2 = df_page1_2[
         'ElaboracaoProjeto',
         'DataEstimadaEmissaoProjeto',
         'DataDeEmissaoProjetoBasico',
+        'DataEstimadaEmissaoProjeto',
         'DataDeEmissaoProjetoExecutivo',
-        'DataInicioMonitoramentoAtivo',
-        'DuracaoMonitoramentoAtivoEmMeses',
-        'DataInicioMonitoramentoPassivo',
-        'DataConclusaoMonitoramentoPassivo',
         'SolucaoDescaracterizacao',
+        'EstruturaRemanescente',
         'EstabilizacaoOuDescaracterizacao',
         'DataInicioEstabilizacaoOuDescaracterizacao',
         'DuracaoEstimadaEmMeses',
         'DataConlusaoEstabilizacaoOuDescaracterizacao',
+        'MonitoramentoAtivo',
+        'DataInicioMonitoramentoAtivo',
+        'DuracaoMonitoramentoAtivoEmMeses',
+        'DataInicioMonitoramentoPassivo',
+        'DataConclusaoMonitoramentoPassivo',
     ]
 ]

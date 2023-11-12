@@ -46,7 +46,6 @@ def scrap_id_info(id: str) -> dict:
         'SituacaoOperacional',
         'DataInicioSituacaoOperacional',
         'VidaUtilPrevista',
-        'DataPrevisaoTerminoConstrucao',
         'DentroAreaProcesso',
         'ProcessosAssociados',
         'CoordenadaSirga',
@@ -131,7 +130,6 @@ for column_name, value_mapping in value_mappings.items():
 # Converter para formato data
 date_columns = [
     'DataInicioSituacaoOperacional',
-    'DataPrevisaoTerminoConstrucao',
 ]
 for column in date_columns:
     df_page1_1[column] = pd.to_datetime(
@@ -147,10 +145,6 @@ numeric_columns = [
     'VolumeProjetoReservatorio',
     'DescargaMaximaVertedouro',
 ]
-
-# df_page1_1[numeric_columns] = df_page1_1[numeric_columns].apply(
-#     pd.to_numeric, errors="coerce"
-# )
 
 
 def format_numeric(df, column_names):
@@ -194,7 +188,6 @@ df_page1_1 = df_page1_1[
         'SituacaoOperacional',
         'DataInicioSituacaoOperacional',
         'VidaUtilPrevista',
-        'DataPrevisaoTerminoConstrucao',
         'DentroAreaProcesso',
         'ProcessosAssociados',
         'CoordenadaSirga',

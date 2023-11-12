@@ -64,8 +64,8 @@ def scrap_key_info(key: str) -> dict:
 
     # Definir possíveis colunas com valores vazios
     missing_columns = [
-        'Municipio',
         'Estado',
+        'Municipio',
         'BackUpDamOperandoPosRompimento',
         'SituacaoNivelEmergencialIndeterminadaInicioConstrucao',
         'NomeUsina',
@@ -169,8 +169,8 @@ df_page1 = df_page1[
     [
         'ID Barragem',
         'NomeBarragem',
-        'Municipio',
         'Estado',
+        'Municipio',
         'TipoBarragemMineracao',
         'BarragemInternaSelante',
         'QuantidadeDiqueInterno',
@@ -181,12 +181,12 @@ df_page1 = df_page1[
         'DataInicioConstrucao',
         'SituacaoNivelEmergencialIndeterminadaInicioConstrucao',
         'DataInicioOperacao',
-        'DataDesativacao',
         'DataInicioDescaracterizacao',
         'EstruturaObjetivoContencao',
         'BaragemDentroAreaProcesso',
         'AlimentoUsina',
         'NomeUsina',
+        'DataDesativacao',
     ]
 ]
 

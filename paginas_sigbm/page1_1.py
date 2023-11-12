@@ -183,8 +183,6 @@ df_page1_1 = df_page1_1[
         'ID Barragem',
         'NomeBarragem',
         'Nome',
-        'NomeEstado',
-        'NomeMunicipio',
         'SituacaoOperacional',
         'DataInicioSituacaoOperacional',
         'VidaUtilPrevista',
@@ -215,6 +213,7 @@ df_page1_1 = df_page1_1.replace(['True', 'False'], ['Sim', 'Não'])
 # Renomear colunas
 df_page1_1.rename(
     columns={
+        'Nome': 'NomeECJ',
         'VidaUtilPrevista': 'VidaUtilPrevista_anos',
         'AlturaMaximaProjeto': 'AlturaMaximaProjeto_m',
         'ComprimentoCristaProjeto': 'ComprimentoCristaProjeto_m',

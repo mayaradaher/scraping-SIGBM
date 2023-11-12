@@ -26,7 +26,12 @@ def scrap_id_info(id: str) -> dict:
     tag2 = soup.find_all(checked='checked')
     id_dict2 = {tag.get('name'): tag.get('value') for tag in tag2}
 
-    dict = {**id_dict, **id_dict2}
+    tag3 = soup.find_all('textarea', {'id': 'textoEstruturaRemanescente'})
+    id_dict3 = {
+        'EstruturaRemanescente': tag.get_text(strip=True) for tag in tag3
+    }
+
+    dict = {**id_dict, **id_dict2, **id_dict3}
 
     dict['ID'] = id
 

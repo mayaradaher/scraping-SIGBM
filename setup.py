@@ -18,7 +18,7 @@ from paginas_sigbm import (
 )
 
 # Definir o caminho do arquivo Excel
-EXCEL_FILE_PATH = f'data-raw/download_sigbm_{DATE}.xlsx'
+EXCEL_FILE_PATH = f'data/download_sigbm_{DATE}.xlsx'
 
 # Criar dicionário que mapeia o nome da página para o DataFrame correspondente
 page_dataframes = {

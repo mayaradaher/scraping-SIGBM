@@ -1,6 +1,6 @@
 # Raspagem de dados SIGBM
 
-Este projeto tem como objetivo realizar a raspagem de dados das barragens localizadas no estado de Minas Gerais, disponíveis no site do Sistema de Gestão de Segurança de Barragem de Mineração - [SIGBM]([https://app.anm.gov.br/SIGBM/Publico/GerenciarPublico](https://app.anm.gov.br/SIGBM/Publico/GerenciarPublico)) da Agência Nacional de Mineração (ANM).
+Este projeto tem como objetivo realizar a raspagem de dados das barragens localizadas no estado de Minas Gerais, disponíveis no site do [Sistema de Gestão de Segurança de Barragem de Mineração - SIGBM](https://app.anm.gov.br/SIGBM/Publico/GerenciarPublico) da Agência Nacional de Mineração (ANM).
 
 #### Estrutura do Projeto
 

@@ -2,13 +2,13 @@
 
 Este projeto tem como objetivo realizar a raspagem de dados das barragens localizadas no estado de Minas Gerais, disponíveis no site do [Sistema de Gestão de Segurança de Barragem de Mineração - SIGBM](https://app.anm.gov.br/SIGBM/Publico/GerenciarPublico) da Agência Nacional de Mineração (ANM).
 
-#### Estrutura do Projeto
+### Estrutura do Projeto
 
-A raspagem é executada diariamente por meio de um *actions*. Os resultados são consolidados na pasta **data**, em que uma planilha no formato *.xlsx* é gerada, contendo os dados extraídos.
+A raspagem é executada diariamente por meio de um *Actions*. Os resultados são consolidados na pasta **data**, onde uma planilha no formato *.xlsx* é gerada, contendo os dados extraídos.
 
 O projeto é estruturado em um pacote que engloba a pasta  **paginas_sigbm**, contendo o código de raspagem de cada página do site. Adicionalmente, inclui o arquivo  **setup.py**, que possibilita a execução do código.
 
-#### Dicionário de dados
+### Dicionário de dados
 
 Para facilitar a compreensão dos dados raspados, há o dicionário de dados abaixo. A coluna **nome_sigbm** refere-se aos nomes dos campos conforme apresentados nas páginas do SIGBM, enquanto a coluna **nome_variavel** representa o campo *name* utilizado no código de inspeção dos elementos das páginas.
 

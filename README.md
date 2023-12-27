@@ -1,57 +1,65 @@
 # Raspagem de dados SIGBM
 
-Raspagem dos dados das barragens do estado de Minas Gerais cadastradas no [SIGBM] (https://app.anm.gov.br/SIGBM/Publico/GerenciarPublico)
+Este projeto tem como objetivo realizar a raspagem de dados das barragens localizadas no estado de Minas Gerais, disponíveis no site do Sistema de Gestão de Segurança de Barragem de Mineração - [SIGBM]([https://app.anm.gov.br/SIGBM/Publico/GerenciarPublico](https://app.anm.gov.br/SIGBM/Publico/GerenciarPublico)) da Agência Nacional de Mineração (ANM).
+
+#### Estrutura do Projeto
+
+A raspagem é executada diariamente por meio de um *actions*. Os resultados são consolidados na pasta **data**, , onde uma planilha no formato *.xlsx* é gerada, contendo os dados extraídos.
+
+O projeto é estruturado em um pacote que engloba a pasta  **paginas_sigbm**, contendo o código de raspagem de cada página do site. Adicionalmente, inclui o arquivo  **setup.py**, que possibilita a execução do código.
+
+#### Dicionário de dados
+
+Para facilitar a compreensão dos dados raspados, há o dicionário de dados abaixo. A coluna **nome_sigbm** refere-se aos nomes dos campos conforme apresentados nas páginas do SIGBM, enquanto a coluna **nome_variavel** representa o campo *name* utilizado no código de inspeção dos elementos das páginas.
 
 
 1. Disposição de Rejeitos com Barramento
 
-
-
-| nome_sigbm                                                                                              | nome_variavel                                         |
-| ------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
-| Tipo de Barragem de Mineração                                                                         | TipoBarragemMineracao                                 |
-| A Barragem de Mineração possui outra estrutura de mineração <br />interna selante de reservatório? | BarragemInternaSelante                                |
-| Quantidade Diques Internos                                                                              | QuantidadeDiqueInterno                                |
-| Quantidade Diques Selantes                                                                              | QuantidadeDiqueSelante                                |
-| A barragem de mineração possui ECJ?                                                                   | BarragemPossuiBackUpDam                               |
-| Esta ECJ está operando pós rompimento da barragem de mineração?                                     | BackUpDamOperandoPosRompimento                        |
-| Situação Operacional                                                                                  | SituacaoOperacional                                   |
-| Data de início da construção                                                                         | DataInicioConstrucao                                  |
-| Data de início da construção - Indeterminada                                                         | SituacaoNivelEmergencialIndeterminadaInicioConstrucao |
-| Data de início da operação                                                                           | DataInicioOperacao                                    |
-| Data de início da descaracterização                                                                  | DataInicioDescaracterizacao                           |
-| Estrutura com o Objetivo de Contenção                                                                 | EstruturaObjetivoContencao                            |
-| A Barragem de Mineração está dentro da Área do Processo ANM ou <br />da Área de Servidão          | BaragemDentroAreaProcesso                             |
-| Barragem de mineração é alimentado por usina?                                                        | AlimentoUsina                                         |
-| Usina                                                                                                   | NomeUsina                                             |
-| Não aparece no front-end do site                                                                       | DataDesativacao                                       |
+| nome_sigbm                                                                                        | nome_variavel                                         |
+| ------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+| Tipo de Barragem de Mineração                                                                   | TipoBarragemMineracao                                 |
+| A Barragem de Mineração possui outra estrutura de mineração interna selante de reservatório? | BarragemInternaSelante                                |
+| Quantidade Diques Internos                                                                        | QuantidadeDiqueInterno                                |
+| Quantidade Diques Selantes                                                                        | QuantidadeDiqueSelante                                |
+| A barragem de mineração possui ECJ?                                                             | BarragemPossuiBackUpDam                               |
+| Esta ECJ está operando pós rompimento da barragem de mineração?                               | BackUpDamOperandoPosRompimento                        |
+| Situação Operacional                                                                            | SituacaoOperacional                                   |
+| Data de início da construção                                                                   | DataInicioConstrucao                                  |
+| Data de início da construção - Indeterminada                                                   | SituacaoNivelEmergencialIndeterminadaInicioConstrucao |
+| Data de início da operação                                                                     | DataInicioOperacao                                    |
+| Data de início da descaracterização                                                            | DataInicioDescaracterizacao                           |
+| Estrutura com o Objetivo de Contenção                                                           | EstruturaObjetivoContencao                            |
+| A Barragem de Mineração está dentro da Área do Processo ANM ou da Área de Servidão          | BaragemDentroAreaProcesso                             |
+| Barragem de mineração é alimentado por usina?                                                  | AlimentoUsina                                         |
+| Usina                                                                                             | NomeUsina                                             |
+| Não aparece no front-end do site                                                                 | DataDesativacao                                       |
 
 1. 1 ECJ
 
-| nome_sigbm                                                                                                            | nome_variavel                            |
-| --------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
-| Nome da ECJ                                                                                                           | NomeECJ                                  |
-| Situação operacional da ECJ                                                                                         | SituacaoOperacional                      |
-| Desde                                                                                                                 | DataInicioSituacaoOperacional            |
-| Vida útil prevista da Back Up Dam (Anos)                                                                             | VidaUtilPrevista_anos                    |
-| A ECJ está dentro da Área do Processo ANM ou da Área de Servidão?                                                 | DentroAreaProcesso                       |
-| Processos associados                                                                                                  | ProcessosAssociados                      |
-| As coordenadas devem ser informadas em SIRGAS2000                                                                     | CoordenadaSirga                          |
-| Latitude                                                                                                              | Latitude                                 |
-| Longitude                                                                                                             | Longitude                                |
-| Altura Máxima do projeto da ECJ (m)                                                                                  | AlturaMaximaProjeto_m                    |
-| Comprimento da Crista do projeto da ECJ (m)                                                                           | ComprimentoCristaProjeto_m               |
-| Volume do projeto da ECJ (m³)                                                                                        | VolumeProjetoReservatorio_m3             |
-| Descarga Máxima do vertedouro da ECJ (m³/ seg)                                                                      | DescargaMaximaVertedouro_m3_seg          |
-| Existe documento que ateste a segurança estrutural e a capacidade <br />para contenção de rejeitos da ECJ com ART? | ExisteDocumentoAtesteSeguranca           |
-| Existe manual de operação da ECJ?                                                                                   | ExisteManualOperacao                     |
-| A ECJ passou por auditoria de terceira parte?                                                                         | PassouAuditoriaTerceiro                  |
-| A ECJ garante a redução da área da mancha de inundação à jusante?                                               | GaranteReducaoAreaManchaInundacaoJusante |
-| Tipo de ECJ quanto ao material de construção                                                                        | MateriaisConstrucao                      |
-| Tipo de fundação da ECJ                                                                                             | TipoFundacao                             |
-| Vazão de projeto da ECJ                                                                                              | VazaoProjeto                             |
-| Método construtivo da ECJ                                                                                            | MetodoConstrutivo                        |
-| Tipo de auscultação da ECJ                                                                                          | TipoAuscultacao                          |
+| nome_sigbm                                                                                                      | nome_variavel                            |
+| --------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
+| Nome da ECJ                                                                                                     | NomeECJ                                  |
+| Situação operacional da ECJ                                                                                   | SituacaoOperacional                      |
+| Desde                                                                                                           | DataInicioSituacaoOperacional            |
+| Vida útil prevista da Back Up Dam (Anos)                                                                       | VidaUtilPrevista_anos                    |
+| A ECJ está dentro da Área do Processo ANM ou da Área de Servidão?                                           | DentroAreaProcesso                       |
+| Processos associados                                                                                            | ProcessosAssociados                      |
+| As coordenadas devem ser informadas em SIRGAS2000                                                               | CoordenadaSirga                          |
+| Latitude                                                                                                        | Latitude                                 |
+| Longitude                                                                                                       | Longitude                                |
+| Altura Máxima do projeto da ECJ (m)                                                                            | AlturaMaximaProjeto_m                    |
+| Comprimento da Crista do projeto da ECJ (m)                                                                     | ComprimentoCristaProjeto_m               |
+| Volume do projeto da ECJ (m³)                                                                                  | VolumeProjetoReservatorio_m3             |
+| Descarga Máxima do vertedouro da ECJ (m³/ seg)                                                                | DescargaMaximaVertedouro_m3_seg          |
+| Existe documento que ateste a segurança estrutural e a capacidade para contenção de rejeitos da ECJ com ART? | ExisteDocumentoAtesteSeguranca           |
+| Existe manual de operação da ECJ?                                                                             | ExisteManualOperacao                     |
+| A ECJ passou por auditoria de terceira parte?                                                                   | PassouAuditoriaTerceiro                  |
+| A ECJ garante a redução da área da mancha de inundação à jusante?                                         | GaranteReducaoAreaManchaInundacaoJusante |
+| Tipo de ECJ quanto ao material de construção                                                                  | MateriaisConstrucao                      |
+| Tipo de fundação da ECJ                                                                                       | TipoFundacao                             |
+| Vazão de projeto da ECJ                                                                                        | VazaoProjeto                             |
+| Método construtivo da ECJ                                                                                      | MetodoConstrutivo                        |
+| Tipo de auscultação da ECJ                                                                                    | TipoAuscultacao                          |
 
 1. 2 Descaracterização
 
@@ -129,23 +137,23 @@ Raspagem dos dados das barragens do estado de Minas Gerais cadastradas no [SIGBM
 
 6. Plano de Segurança
 
-| nome_sigbm                                                                                                                                                                      | nome_variavel                  |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
-| Documentação de projeto                                                                                                                                                       | DocumentacaoProjeto            |
-| Estrutura organizacional e qualificação técnica dos profissionais na <br />equipe de Segurança da Barragem                                                                 | EstruturaOrgTecSegBarragem     |
-| Manuais de Procedimentos para Inspeções de Segurança e Monitoramento                                                                                                         | ManuaisProcSegMonitoramento    |
-| PAE - Plano de Ação Emergencial (quando exigido pelo órgão fiscalizador)                                                                                                    | PlanoAcaoEmergencial           |
-| As cópias físicas do PAEBM foram entregues para as Prefeituras e <br />Defesas Civis municipais e estaduais, conforme exigido pelo art. 31 <br />da Portaria nº 70.389/2017? | CopiaFisicaPAEBM               |
-| Relatórios de inspeção e monitoramento da instrumentação e de Análise <br />de Segurança                                                                                 | RelMonitoramentoInspAnaliseSeg |
+| nome_sigbm                                                                                                                                                           | nome_variavel                  |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
+| Documentação de projeto                                                                                                                                            | DocumentacaoProjeto            |
+| Estrutura organizacional e qualificação técnica dos profissionais na equipe de Segurança da Barragem                                                            | EstruturaOrgTecSegBarragem     |
+| Manuais de Procedimentos para Inspeções de Segurança e Monitoramento                                                                                              | ManuaisProcSegMonitoramento    |
+| PAE - Plano de Ação Emergencial (quando exigido pelo órgão fiscalizador)                                                                                         | PlanoAcaoEmergencial           |
+| As cópias físicas do PAEBM foram entregues para as Prefeituras e Defesas Civis municipais e estaduais, conforme exigido pelo art. 31 da Portaria nº 70.389/2017? | CopiaFisicaPAEBM               |
+| Relatórios de inspeção e monitoramento da instrumentação e de Análise de Segurança                                                                            | RelMonitoramentoInspAnaliseSeg |
 
 7. Dano Potencial Associado
 
-| nome_sigbm                                                                                  | nome_variavel                       |
-| ------------------------------------------------------------------------------------------- | ----------------------------------- |
-| Volume de projeto licenciado do Reservatório (m³)                                         | VolumeProjetoReservatorio_m3        |
-| Volume atual do Reservatório (m³)                                                         | VolumeAtualReservatorio_m3          |
-| Capacidade Total do Reservatório (m³)                                                     | CapacidadeTotalReservatorio         |
-| Existência de população a jusante                                                        | ExistenciaPopulacaoJusante          |
-| Número de pessoas possivelmente afetadas a jusante em caso de <br />rompimento da barragem | NumeroPessoasAfetadasCasoRompimento |
-| Impacto ambiental                                                                           | ImpactoAmbiental                    |
-| Impacto sócio-econômico                                                                   | ImpactoSocioEconomico               |
+| nome_sigbm                                                                            | nome_variavel                       |
+| ------------------------------------------------------------------------------------- | ----------------------------------- |
+| Volume de projeto licenciado do Reservatório (m³)                                   | VolumeProjetoReservatorio_m3        |
+| Volume atual do Reservatório (m³)                                                   | VolumeAtualReservatorio_m3          |
+| Capacidade Total do Reservatório (m³)                                               | CapacidadeTotalReservatorio         |
+| Existência de população a jusante                                                  | ExistenciaPopulacaoJusante          |
+| Número de pessoas possivelmente afetadas a jusante em caso de rompimento da barragem | NumeroPessoasAfetadasCasoRompimento |
+| Impacto ambiental                                                                     | ImpactoAmbiental                    |
+| Impacto sócio-econômico                                                             | ImpactoSocioEconomico               |

@@ -39,7 +39,6 @@ def scrap_id_info(id: str) -> dict:
     missing_columns = [
         'FaseAtualProjeto',
         'ElaboracaoProjeto',
-        'DataEstimadaEmissaoProjeto',
         'DataDeEmissaoProjetoBasico',
         'DataEstimadaEmissaoProjeto',
         'DataDeEmissaoProjetoExecutivo',
@@ -52,6 +51,7 @@ def scrap_id_info(id: str) -> dict:
         'MonitoramentoAtivo',
         'DataInicioMonitoramentoAtivo',
         'DuracaoMonitoramentoAtivoEmMeses',
+        'DataEstimadaEmissaoProjeto',
         'DataInicioMonitoramentoPassivo',
         'DataConclusaoMonitoramentoPassivo',
     ]
@@ -118,7 +118,7 @@ df_page1_2[numeric_columns] = df_page1_2[numeric_columns].apply(
     pd.to_numeric, errors='coerce'
 )
 
-# Substituir true por Indeterminada
+# Substituir true pela correspondência
 df_page1_2['FaseAtualProjeto'] = df_page1_2['FaseAtualProjeto'].replace(
     ['true'], ['Fase Atual do projeto']
 )
@@ -147,7 +147,6 @@ df_page1_2 = df_page1_2[
         'NomeBarragem',
         'FaseAtualProjeto',
         'ElaboracaoProjeto',
-        'DataEstimadaEmissaoProjeto',
         'DataDeEmissaoProjetoBasico',
         'DataEstimadaEmissaoProjeto',
         'DataDeEmissaoProjetoExecutivo',
@@ -160,6 +159,7 @@ df_page1_2 = df_page1_2[
         'MonitoramentoAtivo',
         'DataInicioMonitoramentoAtivo',
         'DuracaoMonitoramentoAtivoEmMeses',
+        'DataEstimadaEmissaoProjeto',
         'DataInicioMonitoramentoPassivo',
         'DataConclusaoMonitoramentoPassivo',
     ]

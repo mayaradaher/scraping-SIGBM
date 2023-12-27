@@ -29,7 +29,7 @@ def scrap_id_info(id: str) -> dict:
                 )
                 time.sleep(5)  # Atraso entre as tentativas em segundos
             else:
-                print(f'Attingiu o número máximo de tentativas para {id}.')
+                print(f'Atingiu o número máximo de tentativas para {id}.')
                 return None  # Retorna None se as tentativas falharem
 
     soup = BeautifulSoup(page.content, 'html.parser')
@@ -50,7 +50,7 @@ def scrap_id_info(id: str) -> dict:
     missing_columns = [
         'VolumeProjetoReservatorio',
         'VolumeAtualReservatorio',
-        'ExistenciaPopulacaoJusante',
+        'CapacidadeTotalReservatorio' 'ExistenciaPopulacaoJusante',
         'NumeroPessoasAfetadasCasoRompimento',
         'ImpactoAmbiental',
         'ImpactoSocioEconomico',
@@ -110,7 +110,11 @@ for column_name, value_mapping in value_mappings_page7.items():
 
 
 # Trocar a vírgula por ponto, depois converter para numérico e inserir duas casas decimais
-numeric_columns = ['VolumeProjetoReservatorio', 'VolumeAtualReservatorio']
+numeric_columns = [
+    'VolumeProjetoReservatorio',
+    'VolumeAtualReservatorio',
+    'CapacidadeTotalReservatorio',
+]
 
 
 def format_numeric(df, column_names):
@@ -135,6 +139,7 @@ df_page7 = df_page7[
         'NomeBarragem',
         'VolumeProjetoReservatorio',
         'VolumeAtualReservatorio',
+        'CapacidadeTotalReservatorio',
         'ExistenciaPopulacaoJusante',
         'NumeroPessoasAfetadasCasoRompimento',
         'ImpactoAmbiental',
@@ -150,6 +155,7 @@ df_page7.rename(
     columns={
         'VolumeProjetoReservatorio': 'VolumeProjetoReservatorio_m3',
         'VolumeAtualReservatorio': 'VolumeAtualReservatorio_m3',
+        'CapacidadeTotalReservatorio': 'CapacidadeTotalReservatorio_m3',
     },
     inplace=True,
 )

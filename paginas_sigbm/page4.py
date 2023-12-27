@@ -29,7 +29,7 @@ def scrap_id_info(id: str) -> dict:
                 )
                 time.sleep(5)  # Atraso entre as tentativas em segundos
             else:
-                print(f'Attingiu o número máximo de tentativas para {id}.')
+                print(f'Atingiu o número máximo de tentativas para {id}.')
                 return None  # Retorna None se as tentativas falharem
 
     soup = BeautifulSoup(page.content, 'html.parser')

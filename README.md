@@ -4,7 +4,7 @@ Este projeto tem como objetivo realizar a raspagem de dados das barragens locali
 
 #### Estrutura do Projeto
 
-A raspagem é executada diariamente por meio de um *actions*. Os resultados são consolidados na pasta **data**, , onde uma planilha no formato *.xlsx* é gerada, contendo os dados extraídos.
+A raspagem é executada diariamente por meio de um *actions*. Os resultados são consolidados na pasta **data**, em que uma planilha no formato *.xlsx* é gerada, contendo os dados extraídos.
 
 O projeto é estruturado em um pacote que engloba a pasta  **paginas_sigbm**, contendo o código de raspagem de cada página do site. Adicionalmente, inclui o arquivo  **setup.py**, que possibilita a execução do código.
 

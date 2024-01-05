@@ -181,7 +181,6 @@ df_page1 = df_page1[
         'DataInicioConstrucao',
         'SituacaoNivelEmergencialIndeterminadaInicioConstrucao',
         'DataInicioOperacao',
-        'DataInicioDescaracterizacao',
         'EstruturaObjetivoContencao',
         'BaragemDentroAreaProcesso',
         'AlimentoUsina',

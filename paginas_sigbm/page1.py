@@ -17,11 +17,9 @@ def scrap_key_info(key: str) -> dict:
     print(f'{key} Extraindo dados Disposição de Rejeitos com Barramento...')
     key_url = f'https://app.anm.gov.br/SIGBM/BarragemPublico/Detalhar/{key}'
 
-    for attempt in range(5):  # Número máximo de tentativas
+    for attempt in range(6):  # Número máximo de tentativas
         try:
-            page = r.get(
-                key_url, timeout=10
-            )  # Aumentar o tempo limite, se necessário
+            page = r.get(key_url, timeout=12)  # Tempo limite
             page.raise_for_status()  # Verifica se a solicitação teve sucesso
             break  # Se bem-sucedido, saia do loop de tentativas
         except (ConnectTimeout, r.exceptions.RequestException):

@@ -17,9 +17,7 @@ def scrap_id_info(id: str) -> dict:
 
     for attempt in range(5):  # Número máximo de tentativas
         try:
-            page = r.get(
-                id_url, timeout=10
-            )  # Aumentar o tempo limite, se necessário
+            page = r.get(id_url, timeout=12)  # Tempo limite
             page.raise_for_status()  # Verifica se a solicitação teve sucesso
             break  # Se bem-sucedido, saia do loop de tentativas
         except (ConnectTimeout, r.exceptions.RequestException):

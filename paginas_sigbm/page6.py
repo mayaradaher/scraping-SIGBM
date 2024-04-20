@@ -15,11 +15,9 @@ def scrap_id_info(id: str) -> dict:
     print(f'{id} Extraindo dados Plano de Segurança...')
     id_url = f'https://app.anm.gov.br/SIGBM/PlanoSegurancaPublico/BuscarPartial?idDeclaracao={id}'
 
-    for attempt in range(5):  # Número máximo de tentativas
+    for attempt in range(6):  # Número máximo de tentativas
         try:
-            page = r.get(
-                id_url, timeout=10
-            )  # Aumentar o tempo limite, se necessário
+            page = r.get(id_url, timeout=12)  # Tempo limite
             page.raise_for_status()  # Verifica se a solicitação teve sucesso
             break  # Se bem-sucedido, saia do loop de tentativas
         except (ConnectTimeout, r.exceptions.RequestException):

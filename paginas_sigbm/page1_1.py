@@ -16,7 +16,7 @@ def scrap_id_info(id: str) -> dict:
         f"https://app.anm.gov.br/SIGBM/BackUpDamPublico/BuscarPartial?idDeclaracao={id}"
     )
 
-    page = r.get(id_url)
+    page = r.get(id_url, verify=False)
 
     soup = BeautifulSoup(page.content, "html.parser")
 

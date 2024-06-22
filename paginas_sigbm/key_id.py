@@ -1,6 +1,9 @@
 import warnings
+
 import pandas as pd
 import requests as r
+
+# from bs4 import BeautifulSoup
 from pandas import json_normalize
 
 warnings.filterwarnings("ignore")
@@ -8,12 +11,9 @@ warnings.filterwarnings("ignore")
 # Definir URL base
 url = "https://app.anm.gov.br/SIGBM/Publico/GerenciarPublico"
 
-# Headers
-headers = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
-    "Accept": "application/json, text/javascript, */*; q=0.01",
-    "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-}
+# Solicitar GET para obter os cookies
+res = r.get(url, verify=False)
+search_cookies = res.cookies
 
 # Definir dados de postagem
 post_data = {
@@ -29,34 +29,11 @@ post_data = {
     "DTOGerenciarFiltroPublico[SituacaoDeclaracaoCondicaoEstabilidade]": "0",
 }
 
-# Solicitar GET para obter os cookies
-try:
-    res = r.get(url, headers=headers, verify=False)
-    res.raise_for_status()  # Verificar se a solicitação GET foi bem-sucedida
-    search_cookies = res.cookies
-except r.RequestException as e:
-    print(f"Falha na solicitação GET: {e}")
-    exit()
-
 # Solicitar POST com os dados e cookies
-try:
-    res_post = r.post(
-        url, data=post_data, cookies=search_cookies, headers=headers, verify=False
-    )
-    res_post.raise_for_status()  # Verificar se a solicitação POST foi bem-sucedida
-except r.RequestException as e:
-    print(f"Falha na solicitação POST: {e}")
-    exit()
+res_post = r.post(url, data=post_data, cookies=search_cookies, verify=False)
 
-# Verificar o conteúdo da resposta POST
-try:
-    values = res_post.json().get("Entities", [])
-    if not values:
-        print("Nenhum dado encontrado.")
-        exit()
-except ValueError as e:
-    print(f"Erro ao converter resposta para JSON: {e}")
-    exit()
+# Extrair os valores do JSON
+values = res_post.json()["Entities"]
 
 # Criar um DataFrame com os valores
 df = pd.json_normalize(values)
@@ -84,5 +61,3 @@ ids = df_state["CodigoDeclaracaoAtual"]
 df_state_id = pd.DataFrame(
     {"NomeBarragem": barragem, "ID": ids, "ID Barragem": id_barragem}
 )
-
-print(df_state_id)

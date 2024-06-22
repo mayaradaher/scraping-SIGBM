@@ -14,7 +14,7 @@ def scrap_id_info(id: str) -> dict:
     print(f"{id} Extraindo dados Descaracterização...")
     id_url = f"https://app.anm.gov.br/SIGBM/DescaracterizacaoPublico/BuscarPartial?idDeclaracao={id}"
 
-    page = r.get(id_url)
+    page = r.get(id_url, verify=False)
 
     soup = BeautifulSoup(page.content, "html.parser")
 

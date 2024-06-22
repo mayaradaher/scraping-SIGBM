@@ -19,7 +19,7 @@ def scrap_key_info(key: str) -> dict:
 
     for attempt in range(6):  # Número máximo de tentativas
         try:
-            page = r.get(key_url, timeout=12)  # Tempo limite
+            page = r.get(key_url, timeout=12, verify=False)  # Tempo limite
             page.raise_for_status()  # Verifica se a solicitação teve sucesso
             break  # Se bem-sucedido, saia do loop de tentativas
         except (ConnectTimeout, r.exceptions.RequestException):

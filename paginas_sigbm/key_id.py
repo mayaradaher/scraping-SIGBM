@@ -12,7 +12,7 @@ warnings.filterwarnings("ignore")
 url = "https://app.anm.gov.br/SIGBM/Publico/GerenciarPublico"
 
 # Solicitar GET para obter os cookies
-res = r.get(url)
+res = r.get(url, verify=False)
 search_cookies = res.cookies
 
 # Definir dados de postagem

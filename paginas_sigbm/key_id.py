@@ -30,7 +30,7 @@ post_data = {
 }
 
 # Solicitar POST com os dados e cookies
-res_post = r.post(url, data=post_data, cookies=search_cookies)
+res_post = r.post(url, data=post_data, cookies=search_cookies, verify=False)
 
 # Extrair os valores do JSON
 values = res_post.json()["Entities"]

@@ -47,6 +47,3 @@ jobs:
       - name: Push para o repositório
         run: |
           git push
-
-      - name: Mostrar versão do Node.js
-        run: node --version

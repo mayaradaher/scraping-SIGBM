@@ -16,11 +16,6 @@ jobs:
       - name: Copiar os arquivos do repositorio
         uses: actions/checkout@v4
 
-      - name: Set up Node.js 20
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'
-
       - name: Instalar o Python
         uses: actions/setup-python@v4
         with:
@@ -52,3 +47,6 @@ jobs:
       - name: Push para o repositório
         run: |
           git push
+
+      - name: Mostrar versão do Node.js
+        run: node --version

@@ -171,7 +171,7 @@ poetry.toml
 .ruff_cache/
 
 # ignore yml file
-.github/workflows/download-sigbm.yml
+.github/workflows/download-sigbm.yaml
 
 # LSP config files
 pyrightconfig.json

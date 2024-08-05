@@ -170,9 +170,6 @@ poetry.toml
 # ruff
 .ruff_cache/
 
-# ignore yaml file
-.github/
-
 # LSP config files
 pyrightconfig.json
 
